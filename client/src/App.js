@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import BlogList from './components/core/Blog';
+import BlogDetail from './components/core/BlogDetailPage';
 
 function App() {
   const [intervalId, setIntervalId] = useState(null);
 
   useEffect(() => {
-    const messages = ['We are here', 'Don\'t leave us'];
+    const messages = ['We are still here', 'Don\'t leave us'];
     let messageIndex = 0;
 
     const handleVisibilityChange = () => {
@@ -37,9 +40,14 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Froker</h1>
-      </header>
+      
+      <Router>
+      <Routes>
+        <Route path="/blog" element={<BlogList />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
+      </Routes>
+    </Router>
+    
     </div>
   );
 }
