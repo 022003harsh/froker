@@ -5,6 +5,7 @@ import axios from 'axios';
 const BlogDetail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios.get(`http://localhost:4000/api/v1/blog/getBlog/${id}`)
@@ -12,9 +13,14 @@ const BlogDetail = () => {
         setBlog(response.data.data);
       })
       .catch(error => {
-        console.error('There was an error fetching the blog details!', error);
+        setError('There was an error fetching the blog details!');
+        console.error(error);
       });
   }, [id]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   if (!blog) {
     return <div>Loading...</div>;

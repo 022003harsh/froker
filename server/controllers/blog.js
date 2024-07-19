@@ -3,7 +3,11 @@ const Blog = require("../models/Blog");
 // Route to add a blog
 exports.addBlog = async (req, res) => {
     try {
-        const newBlog = new Blog(req.body);
+        // Get the highest existing ID and increment
+        const maxId = await Blog.findOne({}, { id: 1 }).sort({ id: -1 }).exec();
+        const newId = maxId ? maxId.id + 1 : 1;
+
+        const newBlog = new Blog({ ...req.body, id: newId });
         await newBlog.save();
         res.status(201).json({
             success: true,
@@ -35,7 +39,7 @@ exports.getAllBlogs = async (req, res) => {
 
 exports.getBlogById = async (req, res) => {
     try {
-        const blog = await Blog.findById(req.params.id);
+        const blog = await Blog.findOne({ id: parseInt(req.params.id) });
         if (!blog) {
             return res.status(404).json({
                 success: false,

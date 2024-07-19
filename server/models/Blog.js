@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const blogSchema = new mongoose.Schema(
     {
+        id: {
+            type: Number,
+            required: true,
+            unique: true,
+        },
         blogTitle: {
             type: String,
             required: true,
@@ -24,7 +29,6 @@ const blogSchema = new mongoose.Schema(
         },
         likes: {
             type: String,
-            // required: true,
             trim: true,
         },
         description: [{
