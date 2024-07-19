@@ -1,23 +1,17 @@
-const express = require("express");
-const router = express.Router();
-const Blog = require("../models/Blog"); // Ensure this path is correct
+// Import the required modules
+const express = require("express")
+const router = express.Router()
 
-// Route to add a blog
-router.post("/addBlog", async (req, res) => {
-    try {
-        const newBlog = new Blog(req.body);
-        await newBlog.save();
-        res.status(201).json({
-            success: true,
-            message: "Blog created successfully",
-            data: newBlog
-        });
-    } catch (error) {
-        res.status(400).json({
-            success: false,
-            message: error.message
-        });
-    }
-});
+const {
+  addBlog,
+  getAllBlogs,
+//   getBlog
+} = require("../controllers/blog")
 
-module.exports = router;
+// Route to add a blog post
+router.post("/addBlog", addBlog)
+
+// Route to get all blogs sorted by the most recent post
+router.get("/getAllBlogs", getAllBlogs);
+
+module.exports = router
