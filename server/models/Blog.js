@@ -28,25 +28,29 @@ const blogSchema = new mongoose.Schema(
             trim: true,
         },
         likes: {
+            type: Number,
+            default: 0
+        },
+        likedBy: [{
+            type: String, // Assume this is a unique user identifier (e.g., user ID or username)
+            unique: true
+        }],
+        description: [{
+        descTitle: {
             type: String,
+            required: true,
             trim: true,
         },
-        description: [{
-            descTitle: {
-                type: String,
-                required: true,
-                trim: true,
-            },
-            descContent: {
-                type: String,
-                required: true,
-                trim: true,
-            },
-            descImage: {
-                type: String,
-                trim: true,
-            }
-        }],
+        descContent: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        descImage: {
+            type: String,
+            trim: true,
+        }
+    }],
         createdAt: {
             type: Date,
             default: Date.now

@@ -25,6 +25,7 @@ const BlogList = () => {
         {blogs.map(blog => (
           <li key={blog.id}>
             <Link to={`/blog/${blog.id}`}>{blog.blogTitle}</Link>
+            <p>Likes: {blog.likes}</p>
           </li>
         ))}
       </ul>

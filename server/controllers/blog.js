@@ -57,3 +57,46 @@ exports.getBlogById = async (req, res) => {
         });
     }
 };
+
+exports.toggleLike = async (req, res) => {
+    const userId = req.body.userId; // Get user ID from request body
+    const blogId = req.params.id; // Get blog ID from request params
+
+    try {
+        const blog = await Blog.findOne({ id: parseInt(blogId) });
+
+        if (!blog) {
+            return res.status(404).json({
+                success: false,
+                message: "Blog not found"
+            });
+        }
+
+        const hasLiked = blog.likedBy.includes(userId);
+
+        if (hasLiked) {
+            // User has already liked the blog, so remove the like
+            blog.likedBy = blog.likedBy.filter(id => id !== userId);
+            blog.likes -= 1;
+        } else {
+            // User has not liked the blog yet, so add the like
+            blog.likedBy.push(userId);
+            blog.likes += 1;
+        }
+
+        await blog.save();
+
+        res.status(200).json({
+            success: true,
+            data: {
+                likes: blog.likes,
+                likedBy: blog.likedBy
+            }
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        });
+    }
+};

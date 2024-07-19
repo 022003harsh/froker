@@ -5,7 +5,8 @@ const router = express.Router()
 const {
   addBlog,
   getAllBlogs,
-  getBlogById
+  getBlogById,
+  toggleLike
 } = require("../controllers/blog")
 
 // Route to add a blog post
@@ -16,5 +17,8 @@ router.get("/getAllBlogs", getAllBlogs);
 
 // Route to get blog by id
 router.get("/getBlog/:id", getBlogById);
+
+// Route for like toggle button
+router.post("/like/:id", toggleLike);
 
 module.exports = router
