@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import BlogList from './components/core/Blog';
-import BlogDetail from './components/core/BlogDetailPage';
-import Home from './components/core/Home';
+import BlogList from './page/Blog';
+import BlogDetail from './page/BlogDetailPage';
+import Home from './page/Home';
+import Navbar from './components/common/Navbar';
+import Footer from './components/common/Footer';
 
 function App() {
   const [intervalId, setIntervalId] = useState(null);
@@ -41,7 +43,7 @@ function App() {
 
   return (
     <div className="App">
-      
+      <Navbar />
       <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -49,7 +51,7 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetail />} />
       </Routes>
     </Router>
-    
+    <Footer />
     </div>
   );
 }
