@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 import BlogList from './page/Blog';
 import BlogDetail from './page/BlogDetailPage';
 import Home from './page/Home';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
+import "./App.css"
 
 function App() {
   const [intervalId, setIntervalId] = useState(null);
@@ -32,7 +33,6 @@ function App() {
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    // Cleanup the event listener and interval on component unmount
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (intervalId) {
@@ -42,16 +42,14 @@ function App() {
   }, [intervalId]);
 
   return (
-    <div className="App">
+    <div className="flex min-h-screen w-screen flex-col text-black bg-white font-inter">
       <Navbar />
-      <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<BlogList />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
       </Routes>
-    </Router>
-    <Footer />
+      <Footer />
     </div>
   );
 }
