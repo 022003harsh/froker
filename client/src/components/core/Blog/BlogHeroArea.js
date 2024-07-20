@@ -41,24 +41,24 @@ const BlogHeroArea = () => {
                 {error && <p className="text-red-500 text-center">{error}</p>}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {blogs.slice(0, 1).map(blog => (
-                        <Link key={blog._id} to={`/blog/${blog._id}`} className=" md:col-span-1">
+                        <Link key={blog.id} to={`/blog/${blog.id}`} className="md:col-span-1">
                             <img src={blog.thumbnail} alt={blog.blogTitle} className="mb-4 w-full h-[160px] lg:h-[280px] rounded-2xl object-cover" />
                             <div className='pl-4 lg:pl-0'>
-                                <p className="mb-4 text-md text-orange-100">by {blog.author} - {formatDate(blogs[0].createdAt)}</p>
-                                <h2 className="text-sm lg:text-base font-medium mb-2">{truncateTitle(blogs[0].blogTitle)}</h2>
-                                <p className="mb-4 text-sm lg:text-base text-richblack-200 leading-5">{blogs[0].description[1]?.descContent.substring(0, 50)}...</p>
+                                <p className="mb-4 text-md text-orange-100">by {blog.author} - {formatDate(blog.createdAt)}</p>
+                                <h2 className="text-sm lg:text-base font-medium mb-2">{truncateTitle(blog.blogTitle)}</h2>
+                                <p className="mb-4 text-sm lg:text-base text-richblack-200 leading-5">{blog.description[0]?.descContent.substring(0, 50)}...</p>
                                 <p className="mb-4 text-md text-orange-100 font-semibold underline">Read More...</p>
                             </div>
                         </Link>
                     ))}
                     <div className="grid grid-cols-1 gap-3">
                         {blogs.slice(1, 3).map(blog => (
-                            <Link key={blog._id} to={`/blog/${blog._id}`} className="flex flex-col lg:flex-row gap-3">
+                            <Link key={blog.id} to={`/blog/${blog.id}`} className="flex flex-col lg:flex-row gap-3">
                                 <img src={blog.thumbnail} alt={blog.blogTitle} className="mb-4 w-full lg:w-[50%] h-[160px] lg:h-full rounded-2xl object-cover" />
                                 <div className='flex flex-col justify-center pl-4 lg:pl-0'>
-                                    <p className="mb-4 text-md text-orange-100">by {blog.author} - {formatDate(blogs[0].createdAt)}</p>
-                                    <h2 className="text-sm lg:text-base font-medium mb-2">{truncateTitle(blogs[0].blogTitle)}</h2>
-                                    <p className="mb-4 text-sm lg:text-base text-richblack-200 leading-5">{blog.description[1]?.descContent.substring(0, 40)}...</p>
+                                    <p className="mb-4 text-md text-orange-100">by {blog.author} - {formatDate(blog.createdAt)}</p>
+                                    <h2 className="text-sm lg:text-base font-medium mb-2">{truncateTitle(blog.blogTitle)}</h2>
+                                    <p className="mb-4 text-sm lg:text-base text-richblack-200 leading-5">{blog.description[0]?.descContent.substring(0, 40)}...</p>
                                     <p className="mb-4 text-md text-orange-100 font-semibold underline">Read More...</p>
                                 </div>
                             </Link>

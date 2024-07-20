@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import BlogList from './page/Blog';
 import BlogDetail from './page/BlogDetailPage';
 import Home from './page/Home';

@@ -1,72 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import EmailSender from '../components/core/Blog/EmailSender';
+import RecentBlogs from '../components/core/Blog/RecentBlogs';
+import BlogFullDescription from '../components/core/BlogDetail/BlogFullDescription';
+import Popup from '../components/Popup';
+import ShareBar from '../components/core/BlogDetail/ShareBar';
 
 const BlogDetail = () => {
-    const { id } = useParams();
-    const [blog, setBlog] = useState(null);
-    const [error, setError] = useState(null);
-    const [hasLiked, setHasLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(0);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/api/v1/blog/getBlog/${id}`)
-            .then(response => {
-                const fetchedBlog = response.data.data;
-                setBlog(fetchedBlog);
-                setLikeCount(fetchedBlog.likes);
-                setHasLiked(fetchedBlog.likedBy.includes('user1')); // Assuming user ID is 'user1' for demo purposes
-            })
-            .catch(error => {
-                setError('There was an error fetching the blog details!');
-                console.error(error);
-            });
-    }, [id]);
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const pageHeight = document.documentElement.scrollHeight;
 
-    const toggleLike = () => {
-        axios.post(`http://localhost:4000/api/v1/blog/like/${id}`, { userId: 'user1' })
-            .then(response => {
-                const updatedBlog = response.data.data;
-                setLikeCount(updatedBlog.likes);
-                setHasLiked(!hasLiked);
-            })
-            .catch(error => {
-                setError('There was an error toggling the like!');
-                console.error(error);
-            });
+            if (scrollPosition > pageHeight / 2 && !showPopup) {
+                setShowPopup(true);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [showPopup]);
+
+    const closePopup = () => {
+        setShowPopup(false);
     };
 
-    if (error) {
-        return <div>{error}</div>;
-    }
-
-    if (!blog) {
-        return <div>Loading...</div>;
-    }
-
     return (
-        <div>
-            <h1>{blog.blogTitle}</h1>
-            <img src={blog.thumbnail} alt={blog.blogTitle} />
-            <p>{blog.author}</p>
-            <p>{blog.readTime}</p>
-            <p>{likeCount} Likes</p>
-            <button onClick={toggleLike}>
-                {hasLiked ? 'Unlike' : 'Like'}
-            </button>
-            <div>
-                {blog.description && blog.description.length > 0 ? (
-                    blog.description.map((desc, index) => (
-                        <div key={index}>
-                            <h2>{desc.descTitle}</h2>
-                            <p>{desc.descContent}</p>
-                            {desc.descImage && <img src={desc.descImage} alt={desc.descTitle} />}
-                        </div>
-                    ))
-                ) : (
-                    <p>No description available.</p>
-                )}
+        <div className="flex flex-col items-center justify-between w-11/12 max-w-maxContent mx-auto">
+            <div className='flex flex-col items-center justify-between w-full h-full'>
+                <BlogFullDescription />
+                <RecentBlogs />
+                <EmailSender />
             </div>
+
+            {showPopup && <Popup onClose={closePopup} />}
+
+            <ShareBar />
         </div>
     );
 };

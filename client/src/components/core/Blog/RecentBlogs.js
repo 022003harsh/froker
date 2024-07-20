@@ -43,28 +43,21 @@ const RecentBlogs = () => {
         <div className="container mx-auto px-4 lg:px-0 w-full max-w-2xl lg:max-w-5xl mt-20">
             <h1 className="text-4xl mb-6 lg:mb-10 text-richblack-100">Recent Posts</h1>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-3'>
-                {/* {currentBlogs.map(blog => (
-                    <li key={blog._id} className="bg-white p-6 rounded-lg shadow-lg hover:bg-gray-100 transition duration-200">
-                        <Link to={`/blog/${blog._id}`} className="text-xl font-semibold mb-2">{blog.blogTitle}</Link>
-                        <p className="mt-2">Likes: {blog.likes}</p>
-                    </li>
-                ))} */}
                 {error && <p className="text-red-500 text-center">{error}</p>}
                 {currentBlogs.map(blog => (
-                    <Link key={blog._id} to={`/blog/${blog._id}`} className="">
+                    <Link key={blog.id} to={`/blog/${blog.id}`} className="">
                         <img src={blog.thumbnail} alt={blog.blogTitle} className="mb-4 w-full h-[250px] lg:h-[280px] rounded-2xl object-cover" />
                         <div className='pl-4 lg:pl-0'>
-                            <p className="mb-4 text-md text-orange-100">by {blog.author} - {formatDate(blogs[0].createdAt)}</p>
-                            <h2 className=" text-sm lg:text-base font-medium mb-2">{truncateTitle(blogs[0].blogTitle)}</h2>
-                            <p className="mb-4 text-sm lg:text-base text-richblack-200 leading-5">{blog.description[1]?.descContent.substring(0, 100)}...</p>
+                            <p className="mb-4 text-md text-orange-100">by {blog.author} - {formatDate(blog.createdAt)}</p>
+                            <h2 className="text-sm lg:text-base font-medium mb-2">{truncateTitle(blog.blogTitle)}</h2>
+                            <p className="mb-4 text-sm lg:text-base text-richblack-200 leading-5">{blog.description[0]?.descContent.substring(0, 100)}...</p>
                             <p className="mb-4 text-md text-orange-100 font-semibold underline">Read More...</p>
                         </div>
                     </Link>
                 ))}
             </div>
 
-
-            <div className="mt-6 flex justify-center gap-1 ">
+            <div className="mt-6 flex justify-center gap-1">
                 <button
                     onClick={() => paginate(currentPage - 1)}
                     disabled={currentPage === 1}
@@ -82,7 +75,6 @@ const RecentBlogs = () => {
                             {index + 1}
                         </p>
                     </button>
-
                 ))}
                 <button
                     onClick={() => paginate(currentPage + 1)}
