@@ -20,7 +20,7 @@ database.connect();
 app.use(express.json());
 app.use(
 	cors({
-		origin: "http://localhost:3000", //frontend port number
+		origin: "*", //frontend port number
 		credentials: true,
 	})
 );
