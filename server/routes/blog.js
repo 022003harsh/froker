@@ -6,7 +6,8 @@ const {
   addBlog,
   getAllBlogs,
   getBlogById,
-  toggleLike
+  toggleLike,
+  getRecentBlogs
 } = require("../controllers/blog")
 
 // Route to add a blog post
@@ -20,5 +21,7 @@ router.get("/getBlog/:id", getBlogById);
 
 // Route for like toggle button
 router.post("/like/:id", toggleLike);
+
+router.get("/getRecentBlogs", getRecentBlogs);
 
 module.exports = router

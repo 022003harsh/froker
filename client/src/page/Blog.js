@@ -1,34 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
+import RecentBlogs from '../components/core/Blog/RecentBlogs'
+import BlogHeroArea from '../components/core/Blog/BlogHeroArea';
+import EmailSender from '../components/core/Blog/EmailSender';
 
 const BlogList = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    axios.get('http://localhost:4000/api/v1/blog/getAllBlogs')
-      .then(response => {
-        setBlogs(response.data.data);
-      })
-      .catch(error => {
-        setError('There was an error fetching the blogs!');
-        console.error(error);
-      });
-  }, []);
-
   return (
-    <div>
-      <h1>Blog List</h1>
-      {error && <p>{error}</p>}
-      <ul>
-        {blogs.map(blog => (
-          <li key={blog.id}>
-            <Link to={`/blog/${blog.id}`}>{blog.blogTitle}</Link>
-            <p>Likes: {blog.likes}</p>
-          </li>
-        ))}
-      </ul>
+    <div className='flex-row items-center justify-between w-11/12 max-w-maxContent mx-auto border'>
+      <div className='flex-row items-center justify-between w-full h-full'>
+          <BlogHeroArea />
+          <RecentBlogs />
+          <EmailSender />
+      </div>
     </div>
   );
 };

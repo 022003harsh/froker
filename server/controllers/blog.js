@@ -100,3 +100,19 @@ exports.toggleLike = async (req, res) => {
         });
     }
 };
+
+exports.getRecentBlogs = async (req, res) => {
+    try {
+        // Fetch the latest 3 blogs, sorted by creation date
+        const blogs = await Blog.find().sort({ createdAt: -1 }).limit(3);
+        res.status(200).json({
+            success: true,
+            data: blogs
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Server error',
+        });
+    }
+};
