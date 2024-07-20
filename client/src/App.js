@@ -5,6 +5,7 @@ import BlogDetail from './page/BlogDetailPage';
 import Home from './page/Home';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
+import Discover from './page/Discover';
 import "./App.css"
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<BlogList />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/discover" element={<Discover />} />
       </Routes>
       <Footer />
     </div>

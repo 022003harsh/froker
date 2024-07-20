@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = () => {
+const Discover = () => {
   return (
     <div className='h-[100vh]'>
       Click on blogs
@@ -8,4 +8,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Discover

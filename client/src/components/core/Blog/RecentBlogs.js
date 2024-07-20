@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const RecentBlogs = () => {
     const [blogs, setBlogs] = useState([]);
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const blogsPerPage = 4;
+    const blogsPerPage = 9;
 
     useEffect(() => {
         axios.get('http://localhost:4000/api/v1/blog/getAllBlogs')
@@ -50,45 +51,46 @@ const RecentBlogs = () => {
                 ))} */}
                 {error && <p className="text-red-500 text-center">{error}</p>}
                 {currentBlogs.map(blog => (
-                        <Link key={blog._id} to={`/blog/${blog._id}`} className="">
-                            <img src={blog.thumbnail} alt={blog.blogTitle} className="mb-4 w-full h-[250px] lg:h-[280px] rounded-2xl object-cover" />
-                            <div className='pl-4 lg:pl-0'>
-                                <p className="mb-4 text-md text-orange-100">by {blog.author} - {formatDate(blogs[0].createdAt)}</p>
-                                <h2 className=" text-sm lg:text-base font-medium mb-2">{truncateTitle(blogs[0].blogTitle)}</h2>
-                                <p className="mb-4 text-sm lg:text-base text-richblack-200 leading-5">{blog.description[1]?.descContent.substring(0, 100)}...</p>
-                                <p className="mb-4 text-md text-orange-100 font-semibold underline">Read More...</p>
-                            </div>
-                        </Link>
-                    ))}
+                    <Link key={blog._id} to={`/blog/${blog._id}`} className="">
+                        <img src={blog.thumbnail} alt={blog.blogTitle} className="mb-4 w-full h-[250px] lg:h-[280px] rounded-2xl object-cover" />
+                        <div className='pl-4 lg:pl-0'>
+                            <p className="mb-4 text-md text-orange-100">by {blog.author} - {formatDate(blogs[0].createdAt)}</p>
+                            <h2 className=" text-sm lg:text-base font-medium mb-2">{truncateTitle(blogs[0].blogTitle)}</h2>
+                            <p className="mb-4 text-sm lg:text-base text-richblack-200 leading-5">{blog.description[1]?.descContent.substring(0, 100)}...</p>
+                            <p className="mb-4 text-md text-orange-100 font-semibold underline">Read More...</p>
+                        </div>
+                    </Link>
+                ))}
             </div>
 
 
-            <div className="mt-6 flex justify-center">
-                <nav className="inline-flex space-x-1">
+            <div className="mt-6 flex justify-center gap-1 ">
+                <button
+                    onClick={() => paginate(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className={`border border-richblack-400 rounded-full p-2 ${currentPage === 1 ? 'opacity-50' : 'bg-gray-200 hover:bg-[#f4f3f3]'}`}
+                >
+                    <FaChevronLeft className='w-4 h-4' />
+                </button>
+                {[...Array(totalPages)].map((_, index) => (
                     <button
-                        onClick={() => paginate(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        className="p-3 rounded-full border bg-gray-200 hover:bg-gray-300"
+                        key={index + 1}
+                        onClick={() => paginate(index + 1)}
+                        className={`p-2 flex justify-center items-center rounded-full border border-richblack-400 ${currentPage === index + 1 ? 'bg-[#f4f3f3]' : 'hover:bg-[#e7e6e6]'}`}
                     >
-                        &lt;
-                    </button>
-                    {[...Array(totalPages)].map((_, index) => (
-                        <button
-                            key={index + 1}
-                            onClick={() => paginate(index + 1)}
-                            className={`p-3 rounded-full border ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300 '}`}
-                        >
+                        <p className='h-4 w-4 flex items-center justify-center'>
                             {index + 1}
-                        </button>
-                    ))}
-                    <button
-                        onClick={() => paginate(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                        className="p-3 rounded-full border bg-gray-200 hover:bg-gray-300"
-                    >
-                        &gt;
+                        </p>
                     </button>
-                </nav>
+
+                ))}
+                <button
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className={`border border-richblack-400 rounded-full p-2 ${currentPage === totalPages ? 'opacity-50' : 'bg-gray-200 hover:bg-[#f4f3f3]'}`}
+                >
+                    <FaChevronRight className='w-4 h-4' />
+                </button>
             </div>
         </div>
     );
