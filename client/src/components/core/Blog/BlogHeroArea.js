@@ -38,7 +38,7 @@ const BlogHeroArea = () => {
             </div>
 
             <div className="container mx-auto px-4 w-full max-w-2xl lg:max-w-5xl">
-                {/* {error && <p className="text-red-500 text-center">{error}</p>} */}
+                {error && <p className="text-red-500 text-center">{error}</p>}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {blogs.slice(0, 1).map(blog => (
                         <Link key={blog._id} to={`/blog/${blog._id}`} className=" md:col-span-1">

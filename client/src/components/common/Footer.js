@@ -20,19 +20,19 @@ const Footer = () => {
                         <ul className='space-y-2'>
                             <li className='flex items-center'>
                                 <img src={logo} alt="Home" className='w-4 h-4 mr-2' />
-                                <a href="#" className='hover:underline'>Home</a>
+                                <a href="/" className='hover:underline'>Home</a>
                             </li>
                             <li className='flex items-center'>
-                                <img src={logo} alt="About Us" className='w-4 h-4 mr-2' />
-                                <a href="#" className='hover:underline'>About Us</a>
+                                <img src={logo} alt="AboutUs" className='w-4 h-4 mr-2' />
+                                <a href="/" className='hover:underline'>About Us</a>
                             </li>
                             <li className='flex items-center'>
-                                <img src={logo} alt="Privacy Policy" className='w-4 h-4 mr-2' />
-                                <a href="#" className='hover:underline'>Privacy Policy</a>
+                                <img src={logo} alt="PrivacyPolicy" className='w-4 h-4 mr-2' />
+                                <a href="/" className='hover:underline'>Privacy Policy</a>
                             </li>
                             <li className='flex items-center'>
                                 <img src={logo} alt="Terms & Conditions" className='w-4 h-4 mr-2' />
-                                <a href="#" className='hover:underline'>Terms & Conditions</a>
+                                <a href="/" className='hover:underline'>Terms & Conditions</a>
                             </li>
                         </ul>
                     </div>
@@ -49,7 +49,7 @@ const Footer = () => {
                         <div className='mb-4'>
                             <img src={logo} alt="QR Code" className='w-32 h-32' />
                         </div>
-                        <img src={logo} alt="Footer Image" className='w-32' />
+                        <img src={logo} alt="Footer" className='w-32' />
                     </div>
                 </div>
             </div>

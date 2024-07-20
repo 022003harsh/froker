@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.28e40a7c.css",
-    "main.js": "/static/js/main.38159e3d.js",
+    "main.js": "/static/js/main.41a92423.js",
     "static/media/puppet.png": "/static/media/puppet.0870868a902e7fe563e5.png",
     "static/media/black-logo-frokerr-copy-10_pwpomg.jpg.png": "/static/media/black-logo-frokerr-copy-10_pwpomg.jpg.ce616334908ccec1af16.png",
     "index.html": "/index.html",
     "main.28e40a7c.css.map": "/static/css/main.28e40a7c.css.map",
-    "main.38159e3d.js.map": "/static/js/main.38159e3d.js.map"
+    "main.41a92423.js.map": "/static/js/main.41a92423.js.map"
   },
   "entrypoints": [
     "static/css/main.28e40a7c.css",
-    "static/js/main.38159e3d.js"
+    "static/js/main.41a92423.js"
   ]
 }

@@ -48,7 +48,7 @@ const RecentBlogs = () => {
                         <p className="mt-2">Likes: {blog.likes}</p>
                     </li>
                 ))} */}
-
+                {error && <p className="text-red-500 text-center">{error}</p>}
                 {currentBlogs.map(blog => (
                         <Link key={blog._id} to={`/blog/${blog._id}`} className="">
                             <img src={blog.thumbnail} alt={blog.blogTitle} className="mb-4 w-full h-[250px] lg:h-[280px] rounded-2xl object-cover" />
