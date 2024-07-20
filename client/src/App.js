@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BlogList from './components/core/Blog';
 import BlogDetail from './components/core/BlogDetailPage';
+import Home from './components/core/Home';
 
 function App() {
   const [intervalId, setIntervalId] = useState(null);
@@ -43,6 +44,7 @@ function App() {
       
       <Router>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/blog" element={<BlogList />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
       </Routes>
