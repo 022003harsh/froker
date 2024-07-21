@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BlogList from './page/Blog';
 import BlogDetail from './page/BlogDetailPage';
 import Home from './page/Home';
@@ -44,6 +44,7 @@ function App() {
 
   return (
     <div className="flex min-h-screen w-screen flex-col text-black bg-white font-inter">
+      <Router>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -52,6 +53,7 @@ function App() {
         <Route path="/discover" element={<Discover />} />
       </Routes>
       <Footer />
+      </Router>
     </div>
   );
 }
