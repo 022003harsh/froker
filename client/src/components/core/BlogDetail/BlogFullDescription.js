@@ -39,7 +39,6 @@ const BlogFullDescription = () => {
             });
     };
 
-
     if (error) {
         return <div>{error}</div>;
     }

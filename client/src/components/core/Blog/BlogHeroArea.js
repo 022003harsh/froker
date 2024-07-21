@@ -10,11 +10,9 @@ const BlogHeroArea = () => {
     useEffect(() => {
         axios.get(getRecentBlogsUrl)
             .then(response => {
-                console.log('Response:', response);
                 setBlogs(response.data.data);
             })
             .catch(error => {
-                console.error('Error fetching blogs:', error);
                 setError('There was an error fetching the blogs!');
             });
     }, []);
