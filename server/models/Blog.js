@@ -32,7 +32,7 @@ const blogSchema = new mongoose.Schema(
             default: 0
         },
         likedBy: [{
-            type: String, // Assume this is a unique user identifier (e.g., user ID or username)
+            type: String,
             unique: true
         }],
         description: [{

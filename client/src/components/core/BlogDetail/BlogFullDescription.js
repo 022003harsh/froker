@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FaRegClock } from "react-icons/fa6";
-import { IoHeartCircle} from "react-icons/io5";
+import { IoHeartCircle } from "react-icons/io5";
+import { getBlogUrl, likeBlogUrl } from '../../../utils/api';
 
 const BlogFullDescription = () => {
     const { id } = useParams();
@@ -12,7 +13,7 @@ const BlogFullDescription = () => {
     const [likeCount, setLikeCount] = useState(0);
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/api/v1/blog/getBlog/${id}`)
+        axios.get(getBlogUrl(id))
             .then(response => {
                 const fetchedBlog = response.data.data;
                 setBlog(fetchedBlog);
@@ -26,7 +27,7 @@ const BlogFullDescription = () => {
     }, [id]);
 
     const toggleLike = () => {
-        axios.post(`http://localhost:4000/api/v1/blog/like/${id}`, { userId: 'user1' })
+        axios.post(likeBlogUrl(id), { userId: 'user1' })
             .then(response => {
                 const updatedBlog = response.data.data;
                 setLikeCount(updatedBlog.likes);
@@ -37,6 +38,7 @@ const BlogFullDescription = () => {
                 console.error(error);
             });
     };
+
 
     if (error) {
         return <div>{error}</div>;

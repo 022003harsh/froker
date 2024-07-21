@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.28e40a7c.css",
-    "main.js": "/static/js/main.41a92423.js",
+    "main.css": "/static/css/main.35456b70.css",
+    "main.js": "/static/js/main.45d3380b.js",
+    "static/media/footerimage.png": "/static/media/footerimage.b3df51c6f075ef9042f7.png",
     "static/media/puppet.png": "/static/media/puppet.0870868a902e7fe563e5.png",
+    "static/media/scanner.png": "/static/media/scanner.965a1b0f1f73dbeabbb2.png",
     "static/media/black-logo-frokerr-copy-10_pwpomg.jpg.png": "/static/media/black-logo-frokerr-copy-10_pwpomg.jpg.ce616334908ccec1af16.png",
     "index.html": "/index.html",
-    "main.28e40a7c.css.map": "/static/css/main.28e40a7c.css.map",
-    "main.41a92423.js.map": "/static/js/main.41a92423.js.map"
+    "main.35456b70.css.map": "/static/css/main.35456b70.css.map",
+    "main.45d3380b.js.map": "/static/js/main.45d3380b.js.map"
   },
   "entrypoints": [
-    "static/css/main.28e40a7c.css",
-    "static/js/main.41a92423.js"
+    "static/css/main.35456b70.css",
+    "static/js/main.45d3380b.js"
   ]
 }

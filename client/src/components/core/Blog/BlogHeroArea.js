@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { getRecentBlogsUrl } from '../../../utils/api';
 
 const BlogHeroArea = () => {
     const [blogs, setBlogs] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/v1/blog/getRecentBlogs')
+        axios.get(getRecentBlogsUrl)
             .then(response => {
+                console.log('Response:', response);
                 setBlogs(response.data.data);
             })
             .catch(error => {
+                console.error('Error fetching blogs:', error);
                 setError('There was an error fetching the blogs!');
-                console.error(error);
             });
     }, []);
+    
 
     const formatDate = (dateString) => {
         const options = { day: 'numeric', month: 'short', year: 'numeric' };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { getAllBlogsUrl } from '../../../utils/api';
 
 const RecentBlogs = () => {
     const [blogs, setBlogs] = useState([]);
@@ -10,7 +11,7 @@ const RecentBlogs = () => {
     const blogsPerPage = 9;
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/v1/blog/getAllBlogs')
+        axios.get(getAllBlogsUrl)
             .then(response => {
                 setBlogs(response.data.data);
             })

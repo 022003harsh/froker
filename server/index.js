@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 const blogRoutes = require("./routes/blog");
-// const groupRoutes = require("./routes/group");
-// const codeRoutes = require("./routes/code")
 const database = require("./config/database");
 const cors = require("cors");  
 const dotenv = require("dotenv");
@@ -27,8 +25,6 @@ app.use(
 
 // Setting up routes
 app.use("/api/v1/blog", blogRoutes);
-// app.use("/api/v1/group", groupRoutes);
-// app.use("/api/v1/code", codeRoutes);
 
 // Testing the server
 app.get("/", (req, res) => {
