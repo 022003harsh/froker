@@ -58,9 +58,10 @@ exports.getBlogById = async (req, res) => {
     }
 };
 
+
 exports.toggleLike = async (req, res) => {
-    const userId = req.body.userId; // Get user ID from request body
-    const blogId = req.params.id; // Get blog ID from request params
+    const userId = req.body.userId;
+    const blogId = req.params.id; 
 
     try {
         const blog = await Blog.findOne({ id: parseInt(blogId) });
@@ -75,11 +76,9 @@ exports.toggleLike = async (req, res) => {
         const hasLiked = blog.likedBy.includes(userId);
 
         if (hasLiked) {
-            // User has already liked the blog, so remove the like
             blog.likedBy = blog.likedBy.filter(id => id !== userId);
             blog.likes -= 1;
         } else {
-            // User has not liked the blog yet, so add the like
             blog.likedBy.push(userId);
             blog.likes += 1;
         }
@@ -100,6 +99,7 @@ exports.toggleLike = async (req, res) => {
         });
     }
 };
+
 
 exports.getRecentBlogs = async (req, res) => {
     try {

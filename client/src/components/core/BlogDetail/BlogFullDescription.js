@@ -12,26 +12,33 @@ const BlogFullDescription = () => {
     const [hasLiked, setHasLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
 
+    // Mock current user ID for demonstration purposes
+    const currentUserId = 'user1'; // Replace this with the actual logged-in user ID
+
     useEffect(() => {
         axios.get(getBlogUrl(id))
             .then(response => {
                 const fetchedBlog = response.data.data;
                 setBlog(fetchedBlog);
                 setLikeCount(fetchedBlog.likes);
-                setHasLiked(fetchedBlog.likedBy.includes('user1'));
+                const userLikes = JSON.parse(localStorage.getItem('userLikes')) || {};
+                setHasLiked(userLikes[id] === true);
             })
             .catch(error => {
                 setError('There was an error fetching the blog details!');
                 console.error(error);
             });
-    }, [id]);
+    }, [id, currentUserId]);
 
     const toggleLike = () => {
-        axios.post(likeBlogUrl(id), { userId: 'user1' })
+        axios.post(likeBlogUrl(id), { userId: currentUserId })
             .then(response => {
                 const updatedBlog = response.data.data;
                 setLikeCount(updatedBlog.likes);
                 setHasLiked(!hasLiked);
+                const userLikes = JSON.parse(localStorage.getItem('userLikes')) || {};
+                userLikes[id] = !hasLiked;
+                localStorage.setItem('userLikes', JSON.stringify(userLikes));
             })
             .catch(error => {
                 setError('There was an error toggling the like!');
@@ -67,7 +74,7 @@ const BlogFullDescription = () => {
                 <div className='flex items-center space-x-2 text-md'>
                     <button
                         onClick={toggleLike}
-                        className={` rounded flex items-center`}
+                        className={`rounded flex items-center`}
                     >
                         {hasLiked ? <IoHeartCircle className='text-orange-100 h-10 md:h-16 w-10 md:w-16' /> : <IoHeartCircle className='text-richblack-200 h-10 md:h-16 w-10 md:w-16' />}
                     </button>
