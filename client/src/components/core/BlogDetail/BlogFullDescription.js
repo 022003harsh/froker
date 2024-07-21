@@ -12,8 +12,8 @@ const BlogFullDescription = () => {
     const [hasLiked, setHasLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
 
-    // Mock current user ID for demonstration purposes
-    const currentUserId = 'user1'; // Replace this with the actual logged-in user ID
+
+    const currentUserId = 'user1'; 
 
     useEffect(() => {
         axios.get(getBlogUrl(id))
