@@ -13,7 +13,7 @@ const BlogFullDescription = () => {
     const [likeCount, setLikeCount] = useState(0);
 
 
-    const currentUserId = 'user1'; 
+    const currentUserId = 'user1';
 
     useEffect(() => {
         axios.get(getBlogUrl(id))

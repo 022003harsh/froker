@@ -16,7 +16,7 @@ const BlogHeroArea = () => {
                 setError('There was an error fetching the blogs!');
             });
     }, []);
-    
+
 
     const formatDate = (dateString) => {
         const options = { day: 'numeric', month: 'short', year: 'numeric' };

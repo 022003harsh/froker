@@ -3,7 +3,7 @@ const Blog = require("../models/Blog");
 // Route to add a blog
 exports.addBlog = async (req, res) => {
     try {
-        // Get the highest existing ID and increment
+        // we will get the highest existing ID and increment
         const maxId = await Blog.findOne({}, { id: 1 }).sort({ id: -1 }).exec();
         const newId = maxId ? maxId.id + 1 : 1;
 
@@ -61,7 +61,7 @@ exports.getBlogById = async (req, res) => {
 
 exports.toggleLike = async (req, res) => {
     const userId = req.body.userId;
-    const blogId = req.params.id; 
+    const blogId = req.params.id;
 
     try {
         const blog = await Blog.findOne({ id: parseInt(blogId) });
@@ -103,7 +103,7 @@ exports.toggleLike = async (req, res) => {
 
 exports.getRecentBlogs = async (req, res) => {
     try {
-        // Fetch the latest 3 blogs, sorted by creation date
+        // Fetching the latest 3 blogs, sorted by creation date
         const blogs = await Blog.find().sort({ createdAt: -1 }).limit(3);
         res.status(200).json({
             success: true,

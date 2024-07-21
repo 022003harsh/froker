@@ -7,7 +7,7 @@ import Popup from '../components/Popup';
 import ShareBar from '../components/core/BlogDetail/ShareBar';
 
 const BlogDetail = () => {
-    const { id } = useParams(); // Get the blog ID from the route parameters
+    const { id } = useParams(); // we will get the blog ID from the route parameters
     const [showPopup, setShowPopup] = useState(false);
     const [popupCount, setPopupCount] = useState(0);
 
@@ -27,7 +27,7 @@ const BlogDetail = () => {
     }, [popupCount]);
 
     useEffect(() => {
-        // Reset the popup count when the route changes
+        // now just Reset the popup count when the route changes
         setPopupCount(0);
     }, [id]);
 

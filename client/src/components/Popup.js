@@ -6,7 +6,7 @@ const Popup = ({ onClose }) => {
     return (
         <div
             className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
-            style={{ zIndex: 9999 }} // Set a high z-index value here
+            style={{ zIndex: 9999 }} 
         >
             <div className="bg-white px-6 py-10 rounded-lg shadow-lg relative lg:flex lg:flex-row lg:items-start">
                 <button

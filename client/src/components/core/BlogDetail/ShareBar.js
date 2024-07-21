@@ -12,7 +12,7 @@ const ShareBar = () => {
                 rel="noreferrer"
                 className="p-1 md:p-2 rounded-full text-white shadow-md transition"
             >
-                <FaTwitter className='h-4 w-4 md:h-6 md:w-6 text-[#3c40c4]'/>
+                <FaTwitter className='h-4 w-4 md:h-6 md:w-6 text-[#3c40c4]' />
             </a>
             <a
                 href="https://www.facebook.com/sharer/sharer.php?u="
@@ -20,7 +20,7 @@ const ShareBar = () => {
                 rel="noreferrer"
                 className=" p-1 md:p-2 rounded-full text-white shadow-md transition"
             >
-                <FaFacebookF className='h-4 w-4 md:h-6 md:w-6 text-[#2529b1] '/>
+                <FaFacebookF className='h-4 w-4 md:h-6 md:w-6 text-[#2529b1] ' />
             </a>
             <a
                 href="https://wa.me/"
@@ -28,7 +28,7 @@ const ShareBar = () => {
                 rel="noreferrer"
                 className="p-1 md:p-2 rounded-full text-white shadow-md  transition"
             >
-                <FaWhatsapp className='h-4 w-4 md:h-6 md:w-6 text-[#36e836]'/>
+                <FaWhatsapp className='h-4 w-4 md:h-6 md:w-6 text-[#36e836]' />
             </a>
         </div>
     );

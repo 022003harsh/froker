@@ -17,13 +17,13 @@ const Navbar = () => {
     <div className='sticky top-0 z-50 bg-white flex h-16 items-center justify-between w-full mx-auto'>
       <div className='flex items-center justify-between w-[95%] mx-auto h-full'>
         <Link to="/" className='flex items-center'>
-          <img 
-            src={logo} 
-            alt="Logo" 
-            width={115} 
-            height={24} 
-            loading="lazy" 
-            className='pt-2 w-20 md:w-28' // Adjust width for small and medium screens
+          <img
+            src={logo}
+            alt="Logo"
+            width={115}
+            height={24}
+            loading="lazy"
+            className='pt-2 w-20 md:w-28'
           />
         </Link>
         <div className='hidden md:flex space-x-4 mr-8 h-full'>
@@ -33,7 +33,7 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
-        
+
         {/* Hamburger Button */}
         <button
           className='md:hidden flex items-center'
